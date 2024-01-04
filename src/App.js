@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import Nav from './components/Nav/Nav.component';
+import Content from './components/Content/Content.component';
+import { BrowserRouter } from "react-router-dom";
+import { TokenContext } from './context/context';
+import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem("token"))
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TokenContext.Provider value={{token: token, setToken: setToken}}>
+        <BrowserRouter>
+          <Nav />
+          <Content />
+          <Toaster/>
+        </BrowserRouter>
+      </TokenContext.Provider>
     </div>
   );
 }
