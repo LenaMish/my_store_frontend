@@ -1,0 +1,61 @@
+/* styles.css (lub inna nazwa pliku) */
+
+.product {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 30px;
+    width: calc(50% - 60px);
+    height: 200px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.2s ease-in-out;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    flex-grow: 1;
+}
+
+.product-description {
+    font-size: 1.2vw; 
+    margin-bottom: 10px;
+}
+
+.product-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.product-options select {
+    width: 48%;
+}
+
+.product-buttons {
+    margin-top: 15px;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
