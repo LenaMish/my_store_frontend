@@ -5,6 +5,8 @@ import Logout from "../Logout/Logout.component"
 import NotFound from "../NotFound/NotFound.component"
 import Register from "../Register/Register.component"
 import ShoppingCart from "../ShoppingCart/ShopingCart.component"
+import Order from "../Order/Order.component"
+import Checkout from "../Checkout/Checkout.component"
 
 const Content = () => {
     return (
@@ -15,6 +17,8 @@ const Content = () => {
                 <Route path="/register" element={<Register/>} />
                 <Route path="/logout" element={<Logout/>} />
                 <Route path="/shopping-cart" element={<ShoppingCart />} />
+                <Route path="/order" element={<Order/>}/>
+                <Route path="/checkout" element={<Checkout/>}/>
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </div>

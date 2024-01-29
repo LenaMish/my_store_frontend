@@ -1,12 +1,12 @@
-// Product.js
-
 import React, { useState } from 'react';
+import {ENDPOINTS} from "../../api/endpoints"
 
 const Product = ({ id, image, name, prices, description, colors, sizes, onAddToCart }) => {
-    const [selectedColor, setSelectedColor] = useState('');
-    const [selectedSize, setSelectedSize] = useState('');
+    const [selectedColor, setSelectedColor] = useState(colors[0]);
+    const [selectedSize, setSelectedSize] = useState(Object.keys(prices)[0]);
     const [selectedImage, setSelectedImage] = useState(null);
-    const [selectedPrice, setSelectedPrice] = useState(prices['S']);
+    const [selectedPrice, setSelectedPrice] = useState(Object.values(prices)[0]);
+
 
     const handleColorChange = (color) => {
         setSelectedColor(color);
@@ -20,7 +20,7 @@ const Product = ({ id, image, name, prices, description, colors, sizes, onAddToC
     const handleAddToCart = () => {
         if (selectedColor && selectedSize) {
             onAddToCart({
-                id,
+                productId: id,
                 name,
                 price: selectedPrice,
                 selectedColor,
@@ -28,10 +28,10 @@ const Product = ({ id, image, name, prices, description, colors, sizes, onAddToC
                 selectedImage,
             });
 
-            setSelectedColor('');
-            setSelectedSize('');
+            setSelectedColor(colors[0]);
+            setSelectedSize(Object.keys(prices)[0]);
             setSelectedImage(null);
-            setSelectedPrice(prices['S']);
+            setSelectedPrice(Object.values(prices)[0]);
         } else {
             alert('Please choose a color and size before adding to the cart.');
         }
@@ -41,7 +41,7 @@ const Product = ({ id, image, name, prices, description, colors, sizes, onAddToC
         <div className="product">
             <div className="product-details">
                 <img
-                    src={selectedImage ? URL.createObjectURL(selectedImage) : image}
+                    src={ENDPOINTS.Media + "/" + image}
                     alt={name}
                     className="product-image"
                 />

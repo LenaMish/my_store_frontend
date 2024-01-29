@@ -1,18 +1,16 @@
-/* styles.css (lub inna nazwa pliku) */
-
 .product {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 30px;
-    width: calc(50% - 60px);
-    height: 200px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+    width: calc(33.33% - 20px); 
+    max-width: 300px; 
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 
 .product:hover {
@@ -36,7 +34,7 @@
 }
 
 .product-description {
-    font-size: 1.2vw; 
+    font-size: 1.2vw;
     margin-bottom: 10px;
 }
 
@@ -58,4 +56,32 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr; */
+}
+
+.order-button,
+.remove-button {
+  background-color: #2d89ec8a;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px; 
+  width: auto;
+}
+
+.order-button:hover,
+.remove-button:hover {
+    background-color: #0056b3;
+}
+
+.cart-item {
+    margin-bottom: 20px; 
+}
+
+.buttons {
+    margin-top: 10px;
 }

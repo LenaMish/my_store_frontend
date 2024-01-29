@@ -1,80 +1,54 @@
-import React, { useState } from 'react';
-import Product from './Product.component';
-import "./Product.component.css"
+
+import React, { useState, useContext } from 'react';
+import Product from "./Product.component";
+import "./Product.component.css";
+import productsData from '../../api/productsData';
+import toast from "react-hot-toast";
+import { addProductToShoppingCart, getShoppingCartCount } from "../../shoppingCart/shoppingCart";
+import { ShoppingCartContext, TokenContext } from "../../context/context";
+import { useEffect } from 'react';
+import axios from 'axios';
+import { ENDPOINTS } from '../../api/endpoints';
 
 const Home = () => {
-    const [cart, setCart] = useState([]);
+    const { shoppingCartCount, setShoppingCartCount } = useContext(ShoppingCartContext);
+    const [products, setProducts] = useState([])
 
-    const handleAddToCart = (product) => {
-        setCart([...cart, product]);
-    };
+    const getProducts = async () => {
+        const response = await axios.get(ENDPOINTS.Products)
+        if(response.status === 200) {
+            setProducts(response.data)
+        } else {
+            toast.error("Failed to fetch data")
+        }
+    }
 
-    const handleRemoveFromCart = (index) => {
-        const updatedCart = [...cart];
-        updatedCart.splice(index, 1);
-        setCart(updatedCart);
-    };
+    useEffect(() => {
+        getProducts()
+    }, [])
 
-    const productsData = [
-        {
-            id: "1",
-            image: "path/to/image1.jpg",
-            name: "Enchanted Elegance Bouquet",
-            prices: { 'S': 19.99, 'M': 24.99, 'L': 29.99 },
-            description: "A timeless arrangement of roses and lilies, the Enchanted Elegance Bouquet exudes sophistication and grace for any special occasion.",
-            colors: ['pink', 'white', 'beige', 'red'],
-            sizes: ['S', 'M', 'L'],
-        },
-        {
-            id: "2",
-            image: "path/to/image2.jpg",
-            name: "Whimsical Garden Dream Bouquet",
-            prices: { 'S': 29.99, 'M': 34.99, 'L': 39.99 },
-            description: "A burst of vibrant tulips and wildflowers, the Whimsical Garden Dream Bouquet brings joy and nature's enchantment into any space.",
-            colors: ['pink', 'white', 'beige', 'red'],
-            sizes: ['S', 'M', 'L'],
-        },
-        {
-            id: "3",
-            image: "path/to/image3.jpg",
-            name: "Serenity Bliss Blossoms",
-            prices: { 'S': 29.99, 'M': 34.99, 'L': 39.99 },
-            description: "An aromatic blend of lavender roses and chamomile daisies, the Serenity Bliss Blossoms create a peaceful atmosphere for conveying heartfelt well wishes",
-            colors: ['pink', 'white', 'beige', 'red'],
-            sizes: ['S', 'M', 'L'],
-        },
-        
-
-    ];
+    const onAddToShoppingCart = (product) => {
+        addProductToShoppingCart(product);
+        toast.success("Added to cart");
+        setShoppingCartCount(shoppingCartCount + 1);
+    }
 
     return (
         <div>
             <div className="products-container">
-                {productsData.map((product) => (
+                {products.map((product) => (
                     <Product
                         key={product.id}
                         id={product.id}
                         image={product.image}
                         name={product.name}
-                        prices={product.prices}
+                        prices={Object.fromEntries(product.variants.map(v => [v.size, v.price]))}
                         description={product.description}
-                        colors={product.colors}
-                        sizes={product.sizes}
-                        onAddToCart={handleAddToCart}
+                        colors={product.variants.map(v => v.color)}
+                        sizes={product.variants.map(v => v.size)}
+                        onAddToCart={onAddToShoppingCart}
                     />
                 ))}
-            </div>
-
-            <div className="cart">
-                <h2>Shopping Cart</h2>
-                <ul>
-                    {cart.map((item, index) => (
-                        <li key={index}>
-                            {item.name} - {item.selectedColor}, {item.selectedSize}
-                            <button onClick={() => handleRemoveFromCart(index)}>Remove</button>
-                        </li>
-                    ))}
-                </ul>
             </div>
         </div>
     );
