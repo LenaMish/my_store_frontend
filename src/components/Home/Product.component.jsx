@@ -25,7 +25,7 @@ const Product = ({ id, image, name, prices, description, colors, sizes, onAddToC
                 price: selectedPrice,
                 selectedColor,
                 selectedSize,
-                selectedImage,
+                image,
             });
 
             setSelectedColor(colors[0]);

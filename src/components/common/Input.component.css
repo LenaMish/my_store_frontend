@@ -1,0 +1,14 @@
+.input-component {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.input-component:hover,
+.input-component:focus {
+    border-color: #007bff; 
+}

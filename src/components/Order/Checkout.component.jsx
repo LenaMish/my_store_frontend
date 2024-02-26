@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import './Checkout.component.css'; 
 
 const Checkout = () => {
-  const [selectedPayment, setSelectedPayment] = useState(null);
+  const [selectedPayment, setSelectedPayment] = useState("card");
 
   const handlePaymentChange = (paymentOption) => {
     setSelectedPayment(paymentOption);

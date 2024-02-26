@@ -4,7 +4,7 @@ import Product from "./Product.component";
 import "./Product.component.css";
 import productsData from '../../api/productsData';
 import toast from "react-hot-toast";
-import { addProductToShoppingCart, getShoppingCartCount } from "../../shoppingCart/shoppingCart";
+import { addProductToShoppingCart, addSelectedProductId, getShoppingCartCount } from "../../shoppingCart/shoppingCart";
 import { ShoppingCartContext, TokenContext } from "../../context/context";
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -29,6 +29,7 @@ const Home = () => {
 
     const onAddToShoppingCart = (product) => {
         addProductToShoppingCart(product);
+        addSelectedProductId(product.id)
         toast.success("Added to cart");
         setShoppingCartCount(shoppingCartCount + 1);
     }

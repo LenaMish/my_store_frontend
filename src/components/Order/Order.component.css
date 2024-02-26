@@ -1,4 +1,3 @@
-/* Order.css */
 
 .order-container {
     max-width: 600px;
@@ -30,4 +29,21 @@
   .checkout-button:hover {
     background-color: #0056b3;
   }
+
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+  }
   
+  .payment-option label {
+    margin-bottom: 10px;
+  }
+  
+  .payment-option input {
+    margin-right: 5px;
+  }
+  
+  .order-summary-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }

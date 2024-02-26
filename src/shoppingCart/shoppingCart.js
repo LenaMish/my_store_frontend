@@ -7,6 +7,27 @@ export const getShoppingCartProducts = () => {
     }
 }
 
+export const getSelectedShoppingCartProductIds = () => {
+    let ids = localStorage.getItem('selectedIds')
+    if(ids == null) {
+        return []
+    } else {
+        return JSON.parse(ids)
+    }
+}
+
+export const addSelectedProductId = (id) => {
+    let ids = getSelectedShoppingCartProductIds()
+    ids.push(id)
+    localStorage.setItem("selectedIds", JSON.stringify(ids))
+}
+
+export const removeSelectedProductId = (id) => {
+    let ids = getSelectedShoppingCartProductIds()
+    ids = ids.filter(sId => sId !== id)
+    localStorage.setItem("selectedIds", JSON.stringify(ids))
+}
+
 export const addProductToShoppingCart = (product) => {
     let products = getShoppingCartProducts()
     let id = 1;

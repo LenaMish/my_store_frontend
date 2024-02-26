@@ -1,55 +1,123 @@
 nav {
-    background-color: rgb(106, 88, 124);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    
-}
-
-a {
-    text-decoration: none;
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    list-style: none;
-
-}
-
-.menu a {
-    color: #fff;
-    font-size: 18px;
-    text-decoration: none;
-    transition: color 0.3s ease, box-shadow 0.3s ease; 
-}
-
-.menu a:hover {
-    color: #ffdb58;
-    box-shadow: 3px 3px 5px rgba(210, 187, 224, 0.4);
-}
-
-
-.left-margin {
-    margin-left: 0 10px;
-}
-
-.right-margin {
-    margin-right: 0 10px;
+  position: relative;
+  background: linear-gradient(to left, rgb(106, 88, 124), rgb(160, 132, 186));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInNav 1s ease forwards, changeBrightness 5s infinite alternate;
 }
 
 #left-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-#left-container p {
-    font-size: 24px;
-    color: #fff;
+#left-container div {
+  display: flex;
+  flex-direction: column;
+  gap: 1x; 
+}
+
+.contact-link {
+  margin-right: 10px;
+}
+
+.store-name,
+.established-year {
+  font-size: 24px;
+  color: #fff;
+  font-family: 'Great Vibes', cursive;
+  cursor: pointer;
+  margin: 0;
+}
+
+.established-year {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.menu a {
+  position: relative;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #ffdb58;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+@keyframes waveAnimation {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.8);
+  }
+}
+
+.left-margin {
+  margin-left: 0 10px;
+}
+
+.right-margin {
+  margin-right: 0 10px;
+}
+
+@keyframes fadeInNav {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes changeBrightness {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(0.8);
+  }
+}
+
+.center-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
