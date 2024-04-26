@@ -9,11 +9,12 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"))
+  const [refreshToken, setRefreshToken] = useState(localStorage.getItem("refreshToken"))
   const [shoppingCartCount, setShoppingCartCount] = useState(localStorage.getItem("token"))
 
   return (
     <div>
-      <TokenContext.Provider value={{token: token, setToken: setToken}}>
+      <TokenContext.Provider value={{token: token, setToken: setToken, refreshToken: refreshToken, setRefreshToken: setRefreshToken}}>
         <ShoppingCartContext.Provider value={{shoppingCartCount: shoppingCartCount, setShoppingCartCount: setShoppingCartCount}}>
         <BrowserRouter>
           <Nav />

@@ -9,7 +9,7 @@ import Input from "../common/Input.component";
 
 
 const Login = () => {
-    const { setToken } = useContext(TokenContext)
+    const { setToken, setRefreshToken } = useContext(TokenContext)
     const navigate = useNavigate()
 
     const handleLogin = async (e) => {
@@ -20,8 +20,10 @@ const Login = () => {
         try {
             const response = await axios.post(ENDPOINTS.Login, body)
             if (response.status === 200) {
-                localStorage.setItem("token", response.data.token)
-                setToken(response.data.token)
+                localStorage.setItem("token", response.data.access)
+                setToken(response.data.access)
+                localStorage.setItem("refreshToken", response.data.refresh)
+                setToken(response.data.refresh)
                 toast('Good Job!', {
                     icon: '🥰',
                 });

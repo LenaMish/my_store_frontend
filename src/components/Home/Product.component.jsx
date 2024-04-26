@@ -1,15 +1,32 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import {ENDPOINTS} from "../../api/endpoints"
 
-const Product = ({ id, image, name, prices, description, colors, sizes, onAddToCart }) => {
-    const [selectedColor, setSelectedColor] = useState(colors[0]);
+const Product = ({ id, image, name, prices, description, variants, onAddToCart }) => {
+    const [selectedColor, setSelectedColor] = useState();
     const [selectedSize, setSelectedSize] = useState(Object.keys(prices)[0]);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedPrice, setSelectedPrice] = useState(Object.values(prices)[0]);
 
+    const [availableSizes, setAvailableSizes] = useState([])
+    const [availableColors, setAvailableColors] = useState([])
+
+    useEffect(() => {
+        if(variants.length > 0) {
+            setAvailableColors(Array.from(new Set(variants.map(v => v.color))))
+            const variant = variants[0]
+            handleColorChange(variant.color)
+            setSelectedPrice(variant.price)
+            setSelectedSize(variant.size)
+        }
+    }, [])
 
     const handleColorChange = (color) => {
         setSelectedColor(color);
+        setSelectedPrice(null)
+        setSelectedSize(null)
+        setAvailableSizes(variants.filter(v => v.color === color).map(v => v.size))  
     };
 
     const handleSizeChange = (size) => {
@@ -27,11 +44,6 @@ const Product = ({ id, image, name, prices, description, colors, sizes, onAddToC
                 selectedSize,
                 image,
             });
-
-            setSelectedColor(colors[0]);
-            setSelectedSize(Object.keys(prices)[0]);
-            setSelectedImage(null);
-            setSelectedPrice(Object.values(prices)[0]);
         } else {
             alert('Please choose a color and size before adding to the cart.');
         }
@@ -59,7 +71,7 @@ const Product = ({ id, image, name, prices, description, colors, sizes, onAddToC
                             onChange={(e) => handleColorChange(e.target.value)}
                         >
                             <option value="">Choose color</option>
-                            {colors.map((color) => (
+                            {availableColors.map((color) => (
                                 <option key={color} value={color}>{color}</option>
                             ))}
                         </select>
@@ -72,7 +84,7 @@ const Product = ({ id, image, name, prices, description, colors, sizes, onAddToC
                             onChange={(e) => handleSizeChange(e.target.value)}
                         >
                             <option value="">Choose size</option>
-                            {sizes.map((size) => (
+                            {availableSizes.map((size) => (
                                 <option key={size} value={size}>{size}</option>
                             ))}
                         </select>

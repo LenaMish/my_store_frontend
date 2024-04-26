@@ -45,8 +45,7 @@ const Home = () => {
                         name={product.name}
                         prices={Object.fromEntries(product.variants.map(v => [v.size, v.price]))}
                         description={product.description}
-                        colors={product.variants.map(v => v.color)}
-                        sizes={product.variants.map(v => v.size)}
+                        variants={product.variants}
                         onAddToCart={onAddToShoppingCart}
                     />
                 ))}

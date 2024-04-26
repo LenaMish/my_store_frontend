@@ -1,0 +1,45 @@
+.item-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item-image {
+    margin-right: 10px;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.item-price {
+    color: #888;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.close-button {
+    margin-top: 10px;
+    height: 40px;
+}
+
+
+.order-summary-container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.order-summary-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.order-summary-details p {
+    margin: 5px 0;
+}
+

@@ -39,11 +39,11 @@
 //     }
 // }
 
-export const DELIVERY = [
-    {name: "Courier - Inpost", price: 9.99, icon: "courier", id: 1},
-    {name: "In store pick-up", price: 0, icon: "build", id: 2},
-    {name: "Inpost Parcel locker 24/7", price: 8.99, icon: "inpost", id: 3},
-    {name: "Pick-up point - Żabka", price: 5.99, icon: "build", id: 4}
-]
+// export const DELIVERY = [
+//     {name: "Courier - Inpost", price: 9.99, icon: "courier", id: 1},
+//     {name: "In store pick-up", price: 0, icon: "build", id: 2},
+//     {name: "Inpost Parcel locker 24/7", price: 8.99, icon: "inpost", id: 3},
+//     {name: "Pick-up point - Żabka", price: 5.99, icon: "build", id: 4}
+// ]
   
 //   export default productsData;
